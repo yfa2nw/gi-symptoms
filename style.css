@@ -1,0 +1,1367 @@
+/* =========================
+   Design tokens
+========================= */
+
+:root {
+    --color-text: #222;
+    --color-page: #f4f4f4;
+    --color-surface: #fff;
+    --color-surface-muted: #fafafa;
+    --color-border: #dedede;
+    --color-border-panel: #e0e0e0;
+    --color-divider: #eee;
+    --color-focus: #777;
+    --color-accent: #000;
+    --color-accent-hover: #222;
+    --color-on-accent: #fff;
+    --color-text-muted: #555;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    --shadow-panel: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   Global styles
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-page);
+    color: var(--color-text);
+}
+
+body {
+    padding: 30px;
+}
+
+/* =========================
+   Main layout
+========================= */
+
+.app-container {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+
+    max-width: 1400px;
+    height: 90vh;
+    min-height: 400px;
+    margin: 0 auto;
+}
+
+/* Shared card look for sidebar and content panel */
+
+.sidebar,
+.content-panel {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-panel);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-panel);
+}
+
+/* =========================
+   Left sidebar
+========================= */
+
+.sidebar {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.sidebar h1 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.condition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.condition-item {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.condition-item:hover,
+.condition-item.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+}
+
+/* Keep the selected item distinguishable on hover */
+.condition-item.active:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.condition-item:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+/* =========================
+   Right content panel
+========================= */
+
+.content-panel {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 32px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.content-panel:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+/* =========================
+   Condition content (shared by all conditions)
+========================= */
+
+.condition-content {
+    display: none;
+}
+
+.condition-content.active {
+    display: block;
+}
+
+.condition-content h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color-divider);
+    font-size: 28px;
+}
+
+.condition-content p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.content-section + .content-section {
+    margin-top: 36px;
+}
+
+.content-section > h3 {
+    margin: 0 0 16px;
+    font-size: 21px;
+}
+
+.content-section > p {
+    margin-top: 0;
+}
+
+/* =========================
+   Data tables (diagnosis, treatment)
+========================= */
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 16px;
+    vertical-align: top;
+}
+
+.data-table thead th {
+    border-bottom: 2px solid var(--color-text);
+    font-size: 14px;
+}
+
+.data-table tbody tr + tr > * {
+    border-top: 1px solid var(--color-border);
+}
+
+/* Row headers (cause / presentation) */
+.data-table tbody th {
+    width: 30%;
+    min-width: 140px;
+    border-right: 1px solid var(--color-border);
+    font-weight: bold;
+}
+
+.data-table tbody td {
+    background-color: var(--color-surface);
+}
+
+.bullet-list {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.5;
+}
+
+.bullet-list li + li {
+    margin-top: 4px;
+}
+
+
+/* =========================
+   Bordered columns (etiology, symptoms, complications)
+========================= */
+
+.etiology-column,
+.info-column {
+    min-width: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.etiology-column h4,
+.info-column h4 {
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-text);
+    text-align: center;
+}
+
+.etiology-column ul,
+.info-column ul {
+    margin: 0;
+}
+
+.etiology-column li,
+.info-column li {
+    min-height: 28px;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   Etiology grid
+========================= */
+
+.etiology-grid-2,
+.etiology-grid-3,
+.etiology-grid-4,
+.etiology-grid-5 {
+    display: grid;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.etiology-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.etiology-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.etiology-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.etiology-grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Badge inside a narrow column: sits on its own line */
+.etiology-column .badge {
+    display: inline-block;
+    margin-top: 4px;
+}
+
+.etiology-column {
+    padding: 12px 8px;
+}
+
+.etiology-column h4 {
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.etiology-column ul {
+    padding-left: 18px;
+}
+
+/* =========================
+   Eosinophilic diagram
+========================= */
+
+.eosinophilic-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.triangle-diagram {
+    position: relative;
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 200 / 190;
+}
+
+.triangle-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 84%;
+    overflow: visible;
+}
+
+.triangle-lines path {
+    fill: none;
+    stroke: var(--color-text);
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.triangle-label {
+    position: absolute;
+    z-index: 1;
+    padding: 3px 4px;
+
+    background-color: var(--color-surface-muted);
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.triangle-label.asthma {
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.triangle-label.allergic-rhinitis {
+    left: -2px;
+    bottom: 28px;
+    width: 48%;
+}
+
+.triangle-label.atopic-dermatitis {
+    right: -2px;
+    bottom: 28px;
+    width: 48%;
+}
+
+.diagram-plus {
+    margin-top: -4px;
+    margin-bottom: 8px;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.food-allergens {
+    width: 100%;
+    padding: 8px 4px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* =========================
+   Symptoms and complications
+========================= */
+
+.sc-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 32px;
+    align-items: start;
+}
+
+.sc-heading {
+    margin: 0 0 16px;
+    padding-left: 10px;
+    border-left: 4px solid var(--color-accent);
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+/* Symptoms: pills */
+
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chip-list li {
+    padding: 6px 16px;
+    border: 1px solid var(--color-text);
+    border-radius: 999px;
+    background-color: var(--color-surface);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Complications: ledger-style rows */
+
+.complication-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+}
+
+.complication-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.complication-name {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.complication-detail {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================
+   Three-column etiology grid
+========================= */
+
+.etiology-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+}
+
+/* Each step in a causal chain sits in its own white box */
+.etiology-column .step {
+    margin: 0;
+    padding: 10px 12px;
+    list-style: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.etiology-column .step li {
+    min-height: 0;
+    margin: 0;
+}
+
+.etiology-column .step li + li {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-divider);
+}
+
+.etiology-column .arrow-down {
+    margin: 6px auto;
+}
+
+/* =========================
+   Increase / decrease indicators
+   (the triangle shape carries the meaning, not just the color)
+========================= */
+
+.change {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.change::before {
+    content: "";
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.change.up {
+    color: #E69F00;
+}
+
+.change.up::before {
+    border-bottom: 8px solid currentColor;
+}
+
+.change.down {
+    color: #0072B2;
+}
+
+.change.down::before {
+    border-top: 8px solid currentColor;
+}
+
+/* Neither up nor down (e.g. disorganized) */
+.change.erratic {
+    color: #8a5a00;
+}
+
+.change.erratic::before {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* =========================
+   Abbreviation popups
+========================= */
+
+.term {
+    position: relative;
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    cursor: help;
+}
+
+.term:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+/* =========================
+   Abbreviation tooltip (one shared element, positioned by JS)
+========================= */
+
+.tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: max-content;
+    max-width: 220px;
+    padding: 6px 10px;
+
+    background-color: var(--color-accent);
+    border-radius: var(--radius-sm);
+    color: var(--color-on-accent);
+
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tooltip {
+        transition: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .etiology-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .term::after {
+        transition: none;
+    }
+}
+
+/* =========================
+   Diagnostic test list
+========================= */
+
+.test-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 12px;
+    list-style: none;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.test-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 14px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+
+    font-size: 15px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.test-name {
+    font-weight: bold;
+}
+
+/* Highlight the preferred test with a heavier border */
+.test-list .gold-standard {
+    border: 2px solid var(--color-accent);
+}
+
+.badge {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* =========================
+   Responsive layout
+========================= */
+
+@media (max-width: 1100px) {
+    .etiology-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .etiology-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branch-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 0;
+        gap: 16px;
+    }
+
+    .sidebar {
+        flex: none;
+        width: 100%;
+        height: 350px;
+    }
+
+    .content-panel {
+        flex: none;
+        width: 100%;
+        height: 60vh;
+        min-height: 300px;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .etiology-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .etiology-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .sc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .etiology-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .etiology-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .etiology-column {
+        padding: 16px;
+    }
+
+    .triangle-diagram {
+        width: 180px;
+    }
+}
+
+/* =========================
+   Reduced motion
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .condition-item {
+        transition: none;
+    }
+}
+
+/* Arrow */
+.arrow-down {
+    position: relative;
+    width: 2px;
+    height: 40px;
+    margin: 12px auto;          /* auto left/right centers it */
+    background-color: currentColor;
+}
+
+/* Arrowhead */
+.arrow-down::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+/* =========================
+   Diagnostic flow
+========================= */
+
+.flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.flow-step {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px 16px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    text-align: center;
+}
+
+.flow-condition {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.flow-action {
+    display: block;
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.flow .arrow-down {
+    margin: 8px auto;
+}
+
+/* =========================
+   Callout note
+========================= */
+
+.note {
+    margin: 12px 0 0;
+    padding: 10px 14px;
+
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background-color: var(--color-surface-muted);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.muted {
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+/* =========================
+   Cross-links between conditions
+========================= */
+
+.see-also {
+    margin-top: 36px;
+    font-size: 15px;
+}
+
+.link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 2px 12px;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 999px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    font: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    line-height: 1.5;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* Arrow signals "go to another page" */
+.link-button::after {
+    content: "→";
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.link-button:hover,
+.link-button:focus-visible {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+}
+
+.link-button:hover::after,
+.link-button:focus-visible::after {
+    transform: translateX(3px);
+}
+
+.link-button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .link-button,
+    .link-button::after {
+        transition: none;
+    }
+}
+
+/* =========================
+   Etiology feature card (H. pylori)
+========================= */
+
+.etiology-feature {
+    margin-bottom: 12px;
+    padding: 16px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.feature-grid .chip-list + .sc-note {
+    margin-top: 16px;
+}
+
+/* Undo the generic etiology list styles for pills inside the card */
+.etiology-feature .chip-list {
+    margin: 0;
+    padding: 0;
+}
+
+.etiology-feature .chip-list li {
+    min-height: 0;
+    margin: 0;
+    padding: 4px 12px;
+    font-size: 13px;
+}
+
+/* =========================
+   Sub-blocks inside a section
+========================= */
+
+.subsection + .subsection,
+.table-wrap + .sc-grid {
+    margin-top: 28px;
+}
+
+.content-section > .sc-note {
+    margin-bottom: 12px;
+}
+
+/* =========================
+   Pills inside table cells
+========================= */
+
+.data-table .chip-list {
+    gap: 8px;
+}
+
+.data-table .chip-list li {
+    padding: 3px 12px;
+    font-size: 13px;
+}
+
+/* =========================
+   Treatment formula
+========================= */
+
+.formula {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.formula-item {
+    padding: 8px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.formula-item small {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.formula-plus {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.formula + .sc-note {
+    margin-top: 8px;
+}
+
+.regimen + .regimen {
+    margin-top: 20px;
+}
+
+.regimen > .sc-note {
+    margin: 0 0 8px;
+}
+
+.regimen .formula + .formula {
+    margin-top: 10px;
+}
+
+.regimen .badge {
+    margin-right: 6px;
+}
+
+/* =========================
+   Badge on its own line (inside narrow headings)
+========================= */
+
+.badge-block {
+    display: block;
+    width: max-content;
+    margin: 6px auto 0;
+    font-weight: normal;
+}
+
+.step + .sc-note {
+    margin-top: 12px;
+}
+
+/* =========================
+   Table cells with pills and notes
+========================= */
+
+.data-table td .chip-list {
+    margin-top: 6px;
+}
+
+.data-table td .chip-list:first-child {
+    margin-top: 0;
+}
+
+.data-table td .sc-note {
+    margin: 10px 0 6px;
+}
+
+/* =========================
+   Table group headings
+========================= */
+
+.data-table .group-row th {
+    width: auto;
+    border-right: 0;
+    background-color: var(--color-divider);
+    color: var(--color-text-muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* =========================
+   Diagnosis branch
+========================= */
+
+.flow-start {
+    margin: 0 auto;
+}
+
+.flow-step .chip-list {
+    justify-content: center;
+    margin: 8px 0 0;
+}
+
+.branch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.branch .arrow-down {
+    margin: 8px auto;
+}
+
+.branch .table-wrap {
+    width: 100%;
+}
+
+.branch-label {
+    margin-bottom: 12px;
+    padding: 4px 16px;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 999px;
+    background-color: var(--color-surface);
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+/* =========================
+   Cause-and-effect lanes
+========================= */
+
+.lane-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chain-lane {
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+.chain {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chain-stage {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.chain-stage.chain-start {
+    flex: 0 1 150px;
+}
+
+.chain-node {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Where the chain begins */
+.chain-node.start {
+    border: 2px solid var(--color-accent);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.node-label {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Horizontal arrow between stages */
+.chain-arrow {
+    position: relative;
+    flex: 0 0 28px;
+    height: 2px;
+    background-color: var(--color-text);
+}
+
+.chain-arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--color-text);
+    border-right: 2px solid var(--color-text);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* Phones: lanes read top to bottom */
+@media (max-width: 700px) {
+    .chain {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .chain-stage.chain-start {
+        flex: none;
+    }
+
+    .chain-arrow {
+        flex: 0 0 20px;
+        align-self: center;
+        width: 2px;
+        height: 20px;
+    }
+
+    .chain-arrow::after {
+        top: auto;
+        right: auto;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%) rotate(135deg);
+    }
+}
+
+/* =========================
+   Lane group labels
+========================= */
+
+.lane-title {
+    margin: 20px 0 8px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.sc-heading + .lane-title {
+    margin-top: 0;
+}
+
+/* Left-aligned badge inside a table cell */
+.badge-left {
+    margin: 8px 0 0;
+}
+
+/* =========================
+   Treatment pyramid
+========================= */
+
+.pyramid-wrap {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface-muted);
+}
+
+/* Vertical arrow pointing up */
+.pyramid-axis {
+    position: relative;
+    flex: 0 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pyramid-axis::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--color-text);
+    transform: translateX(-50%);
+}
+
+.pyramid-axis::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--color-text);
+    border-left: 2px solid var(--color-text);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.pyramid-axis span {
+    position: relative;
+    z-index: 1;
+    padding: 10px 0;
+    background-color: var(--color-surface-muted);
+    color: var(--color-text-muted);
+
+    font-size: 12px;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.pyramid {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.pyramid-tier {
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    text-align: center;
+}
+
+/* Each tier is wider than the one above it */
+.tier-1 { width: 40%; border: 2px solid var(--color-accent); }
+.tier-2 { width: 55%; }
+.tier-3 { width: 70%; }
+.tier-4 { width: 85%; }
+.tier-5 { width: 100%; }
+
+.tier-title {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.pyramid-tier .chip-list {
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 0 0;
+    padding: 0;
+}
+
+.pyramid-tier .chip-list li {
+    padding: 3px 10px;
+    font-size: 13px;
+}
+
+.pyramid-tier .badge-block {
+    margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+    .tier-1 { width: 55%; }
+    .tier-2 { width: 66%; }
+    .tier-3 { width: 77%; }
+    .tier-4 { width: 88%; }
+}
