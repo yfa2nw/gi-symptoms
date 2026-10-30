@@ -5,34 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GI Symptoms Reference</title>
 
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+        try {
+            const savedTheme = localStorage.getItem("gi-theme");
+            if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+        } catch (error) {}
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="questions.js" defer></script>
+    <script src="quiz.js" defer></script>
 </head>
 
 <body>
+    <a class="skip-link" href="#content-panel">Skip to content</a>
+
     <main class="app-container">
 
         <!-- Left sidebar -->
         <aside class="sidebar">
-            <h1>GI Conditions</h1>
+            <div class="sidebar-header">
+                <h1>
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    GI Conditions
+                </h1>
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme">
+                    <span class="theme-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="search" role="search">
+                <label class="visually-hidden" for="condition-search">Search conditions and content</label>
+                <input type="search" id="condition-search" class="search-input" placeholder="Search…" autocomplete="off" aria-describedby="search-hint">
+                <kbd class="search-key" aria-hidden="true">/</kbd>
+            </div>
+            <p class="search-hint" id="search-hint" aria-live="polite"></p>
 
             <nav class="condition-list" aria-label="GI conditions">
-                <button type="button" class="condition-item active" data-condition="esophagitis" aria-current="true">Esophagitis</button>
-                <button type="button" class="condition-item" data-condition="esophageal-motility">Esophageal motility disorders</button>
-                <button type="button" class="condition-item" data-condition="gerd">GERD</button>
-                <button type="button" class="condition-item" data-condition="gastritis">Gastritis</button>
-                <button type="button" class="condition-item" data-condition="pud">PUD</button>
-                <button type="button" class="condition-item" data-condition="malabsorption">Malabsorption</button>
-                <button type="button" class="condition-item" data-condition="diverticular-diseases">Diverticular diseases</button>
-                <button type="button" class="condition-item" data-condition="ibd">IBD</button>
-                <button type="button" class="condition-item" data-condition="ibs">IBS</button>
-                <button type="button" class="condition-item" data-condition="diarrhea">Diarrhea</button>
-                <button type="button" class="condition-item" data-condition="intestinal-ischemia">Intestinal ischemia</button>
+                <p class="group-label" id="group-esophagus">Esophagus</p>
+                <div class="condition-group" role="group" aria-labelledby="group-esophagus">
+                    <button type="button" class="condition-item active" data-condition="esophagitis" aria-current="true">Esophagitis</button>
+                    <button type="button" class="condition-item" data-condition="esophageal-motility">Esophageal motility disorders</button>
+                    <button type="button" class="condition-item" data-condition="gerd">GERD <span class="condition-sub">Gastroesophageal reflux</span></button>
+                </div>
+
+                <p class="group-label" id="group-stomach">Stomach</p>
+                <div class="condition-group" role="group" aria-labelledby="group-stomach">
+                    <button type="button" class="condition-item" data-condition="gastritis">Gastritis</button>
+                    <button type="button" class="condition-item" data-condition="pud">PUD <span class="condition-sub">Peptic ulcer disease</span></button>
+                </div>
+
+                <p class="group-label" id="group-intestines">Intestines</p>
+                <div class="condition-group" role="group" aria-labelledby="group-intestines">
+                    <button type="button" class="condition-item" data-condition="malabsorption">Malabsorption</button>
+                    <button type="button" class="condition-item" data-condition="diverticular-diseases">Diverticular diseases</button>
+                    <button type="button" class="condition-item" data-condition="ibd">IBD <span class="condition-sub">Inflammatory bowel disease</span></button>
+                    <button type="button" class="condition-item" data-condition="ibs">IBS <span class="condition-sub">Irritable bowel syndrome</span></button>
+                    <button type="button" class="condition-item" data-condition="diarrhea">Diarrhea</button>
+                    <button type="button" class="condition-item" data-condition="intestinal-ischemia">Intestinal ischemia</button>
+                </div>
+
+                <p class="no-results" id="no-results" hidden>No matches</p>
             </nav>
+
+            <button type="button" class="quiz-button" id="quiz-button">
+                <span class="quiz-button-icon" aria-hidden="true">?</span>
+                <span class="quiz-button-text">
+                    Practice quiz
+                    <span class="quiz-button-sub">USMLE-style questions</span>
+                </span>
+            </button>
         </aside>
 
+        <!-- Announces the newly opened condition to screen readers -->
+        <p class="visually-hidden" id="view-status" role="status"></p>
+
         <!-- Right content panel -->
-        <section class="content-panel" id="content-panel" aria-live="polite" tabindex="0">
+        <section class="content-panel" id="content-panel" tabindex="0" aria-label="Condition details">
 
             <!-- Esophagitis -->
             <article class="condition-content active" id="esophagitis">
@@ -1855,7 +1906,7 @@
                                         <abbr class="term" tabindex="0" data-definition="Lower gastrointestinal bleed">LGIB</abbr>
                                     </span>
                                     <span class="complication-detail">
-                                        <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">hematochesia</abbr>
+                                        <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">hematochezia</abbr>
                                     </span>
                                 </li>
                                 <li>
@@ -1908,12 +1959,20 @@
                                     <td>Colonoscopy</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Otherwise</th>
-                                    <td>Colonoscopy</td>
+                                    <th scope="row">Suspected diverticulitis</th>
+                                    <td>
+                                        <abbr class="term" tabindex="0" data-definition="Computed tomography of the abdomen and pelvis">CT AP</abbr>
+                                        with contrast
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <p class="note">
+                        <strong>Avoid colonoscopy during acute diverticulitis</strong> because of the risk of perforation.
+                        Perform it 6–8 weeks after recovery to rule out colorectal cancer.
+                    </p>
                 </section>
 
                 <!-- Treatment -->
@@ -2026,7 +2085,7 @@
                                         <ul class="bullet-list">
                                             <li>
                                                 Bloody
-                                                (<abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">hematochesia</abbr>)
+                                                (<abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">hematochezia</abbr>)
                                             </li>
                                         </ul>
                                     </td>
@@ -2444,7 +2503,7 @@
                             <div class="pyramid-tier tier-2">
                                 <span class="tier-title">Biological therapy</span>
                                 <ul class="chip-list">
-                                    <li>Etanercept</li>
+                                    <li>Certolizumab</li>
                                     <li>Infliximab</li>
                                     <li>Adalimumab</li>
                                     <li>Ustekinumab</li>
@@ -3490,7 +3549,7 @@
                                             <abbr class="term" tabindex="0" data-definition="Left lower quadrant">LLQ</abbr> pain
                                         </div>
                                         <div class="chain-node">
-                                            <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">Hematochesia</abbr>
+                                            <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">Hematochezia</abbr>
                                         </div>
                                     </div>
                                 </div>
@@ -3511,7 +3570,7 @@
                             <ul class="chip-list">
                                 <li>Abdominal pain</li>
                                 <li>
-                                    <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">Hematochesia</abbr>
+                                    <abbr class="term" tabindex="0" data-definition="Passage of fresh blood in the stool">Hematochezia</abbr>
                                 </li>
                             </ul>
                         </div>
@@ -3625,6 +3684,9 @@
                     </div>
                 </section>
             </article>
+
+            <!-- Practice quiz (filled in by quiz.js) -->
+            <section class="quiz-view" id="quiz" aria-labelledby="quiz-title"></section>
 
         </section>
     </main>

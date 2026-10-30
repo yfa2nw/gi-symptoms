@@ -1,162 +1,140 @@
-# GI Symptoms Reference
+# GI Conditions Reference
 
-A single-page study reference for gastrointestinal conditions. A sidebar lists the conditions, and the main panel shows the selected condition's pathophysiology, etiology, symptoms and complications, diagnosis, and treatment. The content is written to be scanned: causal pathways are drawn as flows, abbreviations have hover definitions, and increases and decreases are marked visually.
+An interactive study reference for common gastrointestinal conditions. Each condition covers its pathophysiology, etiology, symptoms and complications, diagnosis, and treatment. A built-in practice quiz has USMLE-style multiple-choice questions.
 
-No build step, framework, or dependencies. It is plain HTML, CSS, and JavaScript.
+> **For educational use only.** This is a study aid, not a clinical reference. Do not use it for patient care.
+
+## Getting started
+
+There is nothing to install or build. Open `index.html` in any modern browser.
 
 ## Conditions covered
 
-- Esophagitis
-- Esophageal motility disorders
-- GERD
-- Gastritis
-- Peptic ulcer disease (PUD)
-- Malabsorption
-- Diverticular diseases
-- Inflammatory bowel disease (IBD)
-- Irritable bowel syndrome (IBS)
-- Diarrhea
-- Intestinal ischemia
-
-## Running it
-
-Open `index.html` in any modern browser. The three files must stay in the same folder.
-
-```
-.
-├── index.html   # Structure and all condition content
-├── style.css    # Design tokens and components
-└── script.js    # Navigation, cross-links, tooltips
-```
+| Esophagus | Stomach | Intestines |
+| --- | --- | --- |
+| Esophagitis | Gastritis | Malabsorption |
+| Esophageal motility disorders | Peptic ulcer disease (PUD) | Diverticular diseases |
+| Gastroesophageal reflux disease (GERD) | | Inflammatory bowel disease (IBD) |
+| | | Irritable bowel syndrome (IBS) |
+| | | Diarrhea |
+| | | Intestinal ischemia |
 
 ## Features
 
-- **Sidebar navigation:** selecting a condition shows its article and scrolls the panel back to the top.
-- **Cross-links:** buttons such as "see Malabsorption" jump to another condition and update the sidebar.
-- **Abbreviation tooltips:** hover, focus, or tap an abbreviation for its definition. The tooltip is a single shared element positioned from the term's location, so it is never clipped by tables or the scrolling panel, and it stays inside the window.
-- **Increase and decrease indicators:** green up-triangles, red down-triangles, and amber dots, always paired with a word so color is never the only signal.
-- **Responsive layout:** the sidebar stacks above the content on narrow screens, grids collapse to fewer columns, and flow diagrams read top to bottom on phones.
-- **Accessibility:** buttons are real `<button>` elements, tooltips work with the keyboard (Tab to focus, Esc to close), focus states are visible, and animations are disabled for people who prefer reduced motion.
+### Reference pages
 
-## Page structure
+- **Search** matches condition names and the text inside each page, and highlights matches on the open page.
+- **Section jump bar**: the title and section links stay at the top of the page while you scroll, and highlight the section you're reading.
+- **Abbreviation tooltips**: hover over or focus any dotted-underlined term to see its definition.
+- **Increased/Decreased labels** use both colour and an arrow shape.
+- **Cross-links, plus Previous and Next buttons**, connect related conditions.
+- **Shareable links**: each condition has its own address, e.g. `index.html#gerd`.
+- **Light and dark themes**: the page follows your system setting, or you can switch with the toggle in the sidebar.
+- **Phone layout**: the sidebar becomes a compact top bar.
 
-Every condition is an `<article class="condition-content">` whose `id` matches its sidebar button's `data-condition`. Each article follows the same order, using `<section class="content-section">` blocks:
+### Practice quiz
 
-1. Pathophysiology
-2. Etiology
-3. Symptoms and complications
-4. Diagnosis
-5. Treatment
+Open it from the **Practice quiz** button in the sidebar, the **Quiz me** button on any condition page, or `index.html#quiz`.
 
-## Adding or editing a condition
+- 61 clinical-vignette questions:
+  - **Step 1** questions test mechanisms, microbiology and pathology.
+  - **Step 2 CK** questions test diagnosis and the next step in management.
+- Filter by topic, exam, and whether you've answered or missed a question before. Choose 5, 10, 20 or all questions.
+- After each answer you get an explanation, notes on why some of the wrong options are wrong, and a link to review the topic.
+- The results screen shows your score by topic and by exam, a full answer review, and a **Retry missed** option.
+- Progress is saved in your browser between visits.
 
-1. In the sidebar `<nav>`, add or find the button:
+## Keyboard shortcuts
+
+| Key | Action |
+| --- | --- |
+| `/` | Focus search |
+| `Enter` (in search) | Open the first matching condition |
+| `Esc` | Clear search / close a tooltip |
+| `↑` `↓` `Home` `End` | Move between conditions in the sidebar |
+| `A`–`E` or `1`–`5` | Choose a quiz answer |
+| `Enter` | Submit a quiz answer, then go to the next question |
+
+## Accessibility
+
+- **Skip link and full keyboard navigation**
+- **Screen-reader announcements** when you switch conditions or answer a quiz question
+- **Not colour alone:** information is also shown with shapes, icons and text labels
+- **Contrast:** text colours were chosen to meet WCAG AA contrast in both themes
+- **Reduced motion:** animation turns off when your system's reduced-motion setting is on
+
+## Project structure
+
+```
+index.html     Page layout and all condition content
+style.css      Styles, including light and dark theme colours
+script.js      Navigation, search, section jump bar, tooltips, theme toggle
+questions.js   Quiz question bank
+quiz.js        Quiz screens and logic
+```
+
+## Editing content
+
+### Adding or editing a condition
+
+All condition content lives in `index.html`.
+
+1. Add a button to the right group in the sidebar (`.condition-group`):
+
    ```html
    <button type="button" class="condition-item" data-condition="my-condition">My condition</button>
    ```
-2. Add (or fill in) the matching article inside `#content-panel`:
+
+2. Add an article inside `#content-panel` with a matching `id`:
+
    ```html
    <article class="condition-content" id="my-condition">
-       <h2>My condition</h2>
+       <h2>My Condition</h2>
+
        <section class="content-section">
            <h3>Pathophysiology</h3>
-           <p>...</p>
+           ...
        </section>
    </article>
    ```
-3. The `id` and `data-condition` values must match exactly. No JavaScript changes are needed.
 
-## Component reference
+   The section jump bar, the Previous and Next buttons, and the "Quiz me" button are generated automatically.
 
-### Abbreviations
+3. Useful building blocks:
 
-```html
-<abbr class="term" tabindex="0" data-definition="Lower esophageal sphincter">LES</abbr>
+   | Markup | Result |
+   | --- | --- |
+   | `<abbr class="term" tabindex="0" data-definition="...">ABC</abbr>` | Term with a definition tooltip |
+   | `<span class="change up">Increased</span>` | ▲ Increased label (also `down` and `erratic`) |
+   | `<button type="button" class="link-button" data-goto="gerd">GERD</button>` | Link to another condition |
+   | `<p class="note">...</p>` | Highlighted callout |
+   | `<span class="badge">Most common</span>` | Badge |
+
+### Adding a quiz question
+
+Add an entry to `QUIZ_QUESTIONS` in `questions.js`:
+
+```js
+{
+    id: "gerd-example",            // unique and stable: saved progress uses it
+    condition: "gerd",             // must match an article id
+    step: 2,                       // 1 = Step 1, 2 = Step 2 CK
+    stem: "A 45-year-old man ...", // clinical vignette
+    leadIn: "Which of the following is the most appropriate next step?",
+    options: ["...", "...", "...", "...", "..."], // exactly five
+    answer: 2,                     // index of the correct option
+    explanation: "...",
+    notes: { 0: "Why option 0 is wrong" },    // optional
+    info: "Context beyond the course material", // optional, shown as "Additional information"
+},
 ```
 
-`tabindex="0"` is required so keyboard and touch users can reach it.
-
-### Increase and decrease indicators
-
-```html
-<span class="change up">Increased</span> HCl production
-<span class="change down">Decreased</span> mucus production
-<span class="change erratic">Disorganized</span> motility
-```
-
-Wrap only the word, not the whole phrase.
-
-### Causal chains (vertical, inside a column)
-
-```html
-<div class="etiology-column">
-    <h4>Cause</h4>
-    <ul class="step"><li>First step</li></ul>
-    <div class="arrow-down" aria-hidden="true"></div>
-    <ul class="step"><li>Next step</li></ul>
-</div>
-```
-
-Place columns inside `etiology-grid-2`, `-3`, `-4`, or `-5`.
-
-### Cause-and-effect lanes (horizontal, left to right)
-
-```html
-<div class="lane-list">
-    <div class="chain-lane">
-        <div class="chain">
-            <div class="chain-stage chain-start">
-                <div class="chain-node start">Start</div>
-            </div>
-            <div class="chain-arrow" aria-hidden="true"></div>
-            <div class="chain-stage">
-                <div class="chain-node">Result A</div>
-                <div class="chain-node">Result B</div>
-            </div>
-        </div>
-    </div>
-</div>
-```
-
-Nodes in the same stage are parallel effects. Use `.node-label` inside a node for a smaller grey note. Lanes switch to vertical below 700px.
-
-### Other components
-
-| Component | Classes | Used for |
-|---|---|---|
-| Pills | `chip-list` | Short facts, symptoms, drug names |
-| Plain list | `bullet-list` | Test or drug lists inside table cells |
-| Table | `table-wrap` > `data-table` | Comparisons and "if there is / then" lookups. Add `<tr class="group-row">` for group headings |
-| Two-column symptoms layout | `sc-grid` with `sc-heading`, `chip-list`, `complication-list` | Symptoms (pills) and complications (ledger list) |
-| Flowchart | `flow` > `flow-step` (`flow-condition`, `flow-action`) | Sequential diagnostic steps |
-| Diagnostic tests | `test-list` (+ `gold-standard`) | Side-by-side tests, with a highlighted preferred test |
-| Branching diagnosis | `branch-grid` > `branch` (`branch-label`) | One test that splits into two paths |
-| Drug formula | `formula` > `formula-item` and `formula-plus` | Combination regimens |
-| Treatment pyramid | `pyramid-wrap` > `pyramid` > `pyramid-tier tier-1`..`tier-5` | Step-up therapy |
-| Feature card | `etiology-column etiology-feature` + `feature-grid` | A cause that needs more room than a column |
-| Callout | `note` | Important side notes |
-| Badge | `badge` (`badge-block` to put it on its own line) | "Most common", "Gold standard", etc. |
-| Sub-block | `subsection` | Spacing between blocks inside a section |
-| Muted text | `muted`, `sc-note`, `lane-title` | Secondary labels |
-
-### Cross-links between conditions
-
-```html
-<button type="button" class="link-button" data-goto="malabsorption">Malabsorption</button>
-```
-
-`data-goto` takes the target condition's `id`.
-
-## Styling
-
-Colors, radii, and the shadow are CSS variables on `:root` in `style.css` (`--color-text`, `--color-border`, `--color-accent`, and so on). Changing them there updates the whole page. The palette is intentionally black, white, and grey, with green, red, and amber used only for the increase, decrease, and disorder indicators.
+Options are shuffled when shown, so you can list them in any order.
 
 ## Browser support
 
-Current versions of Chrome, Edge, Firefox, and Safari. It uses CSS grid, flexbox, custom properties, `aspect-ratio`, and `:focus-visible`.
+The page works in current versions of Chrome, Edge, Firefox and Safari. Highlighting search matches on a page needs the CSS Custom Highlight API. Browsers without it still filter the sidebar but don't highlight matches.
 
-## Content notes
+## Saved data
 
-- This is a study aid, not a clinical reference. It should not be used to make treatment decisions.
-- Several abbreviation definitions were written from general knowledge, so verify them against your course materials or a trusted source.
-- Some items depend on which guideline or course is used (for example the Rome criteria version, colonoscopy timing in diverticulitis, and the layer ulcers extend past in PUD). Check them against your own source.
+The theme choice (`gi-theme`) and quiz progress (`gi-quiz-history`) are saved in the browser's `localStorage` and never leave your device. To clear quiz progress, use **Reset progress** on the quiz setup screen.
