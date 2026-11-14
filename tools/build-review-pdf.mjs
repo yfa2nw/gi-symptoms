@@ -117,7 +117,9 @@ function diagramStyles() {
 function figureKey(after, svg, id, label = "") {
     const wanted = [...new Set([...svg.matchAll(/<g class="site-marker">[\s\S]*?<text[^>]*>([A-Z0-9]+)<\/text>/g)].map((m) => m[1]))].sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
     if (!wanted.length) return "";
-    const section = after.slice(0, after.indexOf("</section>"));
+    // The key ends at the section's end or the next diagram, whose numbers are its own
+    const end = after.indexOf("</section>"), next = after.indexOf("<svg");
+    const section = after.slice(0, next >= 0 && next < end ? next : end);
     const found = new Map();
     for (const m of section.matchAll(/<span class="cause-number"[^>]*>([A-Z0-9]+)<\/span><span class="cause-text"><span class="cause-name">([\s\S]*?)<\/span><span class="cause-detail">/g)) {
         if (!found.has(m[1])) found.set(m[1], plain(m[2]));
