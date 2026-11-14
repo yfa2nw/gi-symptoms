@@ -51,6 +51,13 @@
                 <!-- The neuron chain is drawn here by map.js and shared/map.js, lined up with the stations below -->
                 <svg class="map-svg" aria-hidden="true" focusable="false"></svg>
 
+                <div class="station" data-organ="development">
+                <p class="group-label" id="group-development">Development</p>
+                <div class="condition-group" role="group" aria-labelledby="group-development">
+                    <button type="button" class="condition-item" data-condition="neuro-embryology">Nervous system embryology</button>
+                </div>
+                </div>
+
                 <div class="station" data-organ="neurons">
                 <p class="group-label" id="group-neurons">Neurons</p>
                 <div class="condition-group" role="group" aria-labelledby="group-neurons">
@@ -127,6 +134,181 @@
 
         <!-- Right content panel -->
         <section class="content-panel" id="content-panel" tabindex="0" aria-label="Topic details">
+
+            <article class="condition-content" id="neuro-embryology">
+                <h2>Nervous System Embryology and Defects</h2>
+
+                <section class="content-section">
+                    <h3>Overview</h3>
+<p>The neural tube, folded from ectoderm under the influence of the notochord, forms the brain and spinal cord, while neural crest cells that leave its edges form most of the peripheral nervous system.</p>
+<ol class="pathway">
+<li><span class="pathway-title">Notochord</span><span class="pathway-detail">Induces the overlying ectoderm, end of week 3</span></li>
+<li><span class="pathway-title">Neural plate</span><span class="pathway-detail">Thickened neuroectoderm</span></li>
+<li><span class="pathway-title">Neural folds and groove</span><span class="pathway-detail">Rise and meet in the midline</span></li>
+<li><span class="pathway-title">Neural tube</span><span class="pathway-detail">Closes from the middle toward both ends; forms the <abbr class="term" tabindex="0" data-definition="Central nervous system">CNS</abbr></span></li>
+<li><span class="pathway-title">Neural crest</span><span class="pathway-detail">Cells leave the fold edges; form most of the <abbr class="term" tabindex="0" data-definition="Peripheral nervous system">PNS</abbr></span></li>
+</ol>
+                </section>
+
+                <section class="content-section">
+                    <h3>Neurulation</h3>
+<div class="subsection">
+<h4 class="sc-heading">From plate to tube</h4>
+<figure class="cause-map is-wide"><svg viewBox="0 10 600 180" role="img" aria-label="Three cross-sections of neurulation, numbered. 1, the notochord induces a thickened neural plate in the ectoderm. 2, the neural folds rise around a neural groove. 3, the folds fuse into a neural tube beneath the surface ectoderm, and neural crest cells leave its dorsal edge. The notochord lies beneath in each">
+<path class="sah-press" d="M20 60H180"/><rect class="bleed" x="64" y="56" width="72" height="9" rx="4"/><circle class="sah-csf" cx="100" cy="130" r="12"/><path class="sah-press" d="M220 60H262C270 60 270 30 278 30M380 60H338C330 60 330 30 322 30"/><path class="bleed" d="M270 34C274 76 326 76 330 34" fill="none" stroke="var(--color-wrong)" stroke-width="8"/><circle class="sah-csf" cx="300" cy="130" r="12"/><path class="sah-press" d="M420 60H580"/><circle class="sah-brain" cx="500" cy="94" r="22"/><circle class="bleed" cx="500" cy="94" r="22" fill="none" stroke="var(--color-wrong)" stroke-width="7" opacity="0.75"/><circle class="sah-sac" cx="468" cy="72" r="5"/><circle class="sah-sac" cx="532" cy="72" r="5"/><circle class="sah-csf" cx="500" cy="130" r="12"/><path class="sah-press" d="M188 96L212 96M212 96L203.9 99.9M212 96L203.9 92.1"/><path class="sah-press" d="M388 96L412 96M412 96L403.9 99.9M412 96L403.9 92.1"/>
+<text class="site-label" x="100" y="176" text-anchor="middle">Neural plate</text><text class="site-label" x="300" y="176" text-anchor="middle">Neural folds and groove</text><text class="site-label" x="500" y="176" text-anchor="middle">Neural tube and crest</text><text class="site-label" x="118" y="134" text-anchor="start">Notochord</text>
+<g class="site-marker"><circle cx="100" cy="34" r="11"/><text x="100" y="38.5">1</text></g><g class="site-marker"><circle cx="300" cy="92" r="11"/><text x="300" y="96.5">2</text></g><g class="site-marker"><circle cx="500" cy="128" r="11"/><text x="500" y="132.5">3</text></g>
+</svg></figure>
+<ul class="cause-list">
+<li><span class="cause-number" aria-hidden="true">1</span><span class="cause-text"><span class="cause-name">Neural plate</span><span class="cause-detail">The notochord induces the overlying ectoderm to thicken at the end of week 3</span></span></li>
+<li><span class="cause-number" aria-hidden="true">2</span><span class="cause-text"><span class="cause-name">Neural folds and groove</span><span class="cause-detail">The edges rise and the middle sinks; closure starts in the middle and zips toward both ends</span></span></li>
+<li><span class="cause-number" aria-hidden="true">3</span><span class="cause-text"><span class="cause-name">Neural tube and crest</span><span class="cause-detail">The folds fuse beneath the surface ectoderm, and neural crest cells leave the dorsal edges</span></span></li>
+</ul>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Closing the ends</h4>
+<ul class="pair-list">
+<li><span class="pair-from">Anterior (cranial) neuropore</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Closes on day 25; failure → anencephaly</span></li>
+<li><span class="pair-from">Posterior (caudal) neuropore</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Closes on day 28; failure → spina bifida</span></li>
+<li><span class="pair-from">Notochord</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Later becomes the nucleus pulposus of the intervertebral discs</span></li>
+</ul>
+</div>
+<p class="note"><strong>The neural tube closes by day 28,</strong> often before pregnancy is recognized, so folic acid is taken before conception.</p>
+                </section>
+
+                <section class="content-section">
+                    <h3>Brain vesicles</h3>
+<div class="subsection">
+<h4 class="sc-heading">Three primary, five secondary</h4>
+<figure class="cause-map is-wide"><svg viewBox="0 0 600 190" role="img" aria-label="Three primary brain vesicles divide into five secondary vesicles. The prosencephalon, 1, forms the telencephalon and 2, the diencephalon; the mesencephalon stays as 3; and the rhombencephalon forms 4, the metencephalon, and 5, the myelencephalon">
+<rect class="tr-box" x="10" y="20" width="220" height="50" rx="12"/><text class="site-label" x="120" y="50" text-anchor="middle"><tspan x="120" dy="0">Prosencephalon</tspan></text><rect class="tr-box" x="240" y="20" width="110" height="50" rx="12"/><text class="site-label" x="295" y="50" text-anchor="middle"><tspan x="295" dy="0">Mesencephalon</tspan></text><rect class="tr-box" x="360" y="20" width="230" height="50" rx="12"/><text class="site-label" x="475" y="50" text-anchor="middle"><tspan x="475" dy="0">Rhombencephalon</tspan></text>
+<path class="sah-press" d="M70 72L62 110M62 110L59.8 101.3M62 110L67.5 102.9"/><path class="sah-press" d="M170 72L178 110M178 110L172.5 102.9M178 110L180.2 101.3"/><path class="sah-press" d="M295 72L295 110M295 110L291.1 101.9M295 110L298.9 101.9"/><path class="sah-press" d="M420 72L412 110M412 110L409.8 101.3M412 110L417.5 102.9"/><path class="sah-press" d="M530 72L538 110M538 110L532.5 102.9M538 110L540.2 101.3"/>
+<rect class="tr-box" x="10" y="112" width="108" height="50" rx="12"/><text class="site-label" x="64" y="142" text-anchor="middle"><tspan x="64" dy="0">Telencephalon</tspan></text><rect class="tr-box" x="124" y="112" width="108" height="50" rx="12"/><text class="site-label" x="178" y="142" text-anchor="middle"><tspan x="178" dy="0">Diencephalon</tspan></text><rect class="tr-box" x="240" y="112" width="110" height="50" rx="12"/><text class="site-label" x="295" y="142" text-anchor="middle"><tspan x="295" dy="0">Mesencephalon</tspan></text><rect class="tr-box" x="360" y="112" width="112" height="50" rx="12"/><text class="site-label" x="416" y="142" text-anchor="middle"><tspan x="416" dy="0">Metencephalon</tspan></text><rect class="tr-box" x="478" y="112" width="112" height="50" rx="12"/><text class="site-label" x="534" y="142" text-anchor="middle"><tspan x="534" dy="0">Myelencephalon</tspan></text>
+<g class="site-marker"><circle cx="64" cy="172" r="11"/><text x="64" y="176.5">1</text></g><g class="site-marker"><circle cx="178" cy="172" r="11"/><text x="178" y="176.5">2</text></g><g class="site-marker"><circle cx="295" cy="172" r="11"/><text x="295" y="176.5">3</text></g><g class="site-marker"><circle cx="416" cy="172" r="11"/><text x="416" y="176.5">4</text></g><g class="site-marker"><circle cx="534" cy="172" r="11"/><text x="534" y="176.5">5</text></g>
+</svg></figure>
+<div class="table-wrap"><table class="data-table compare-table"><thead><tr><th scope="col">Secondary vesicle</th><th scope="col">Adult structures</th><th scope="col">Cavity</th></tr></thead><tbody><tr><th scope="row">1 Telencephalon</th><td>Cerebral hemispheres, basal ganglia</td><td>Lateral ventricles</td></tr><tr><th scope="row">2 Diencephalon</th><td>Thalamus, hypothalamus, retina, posterior pituitary</td><td>Third ventricle</td></tr><tr><th scope="row">3 Mesencephalon</th><td>Midbrain</td><td>Cerebral aqueduct</td></tr><tr><th scope="row">4 Metencephalon</th><td>Pons, cerebellum</td><td>Upper fourth ventricle</td></tr><tr><th scope="row">5 Myelencephalon</th><td>Medulla</td><td>Lower fourth ventricle</td></tr></tbody></table></div>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Sensory and motor plates</h4>
+<div class="etiology-map">
+<figure class="cause-map"><svg viewBox="0 0 380 260" role="img" aria-label="A cross-section of the developing spinal cord. The sulcus limitans on each side of the central canal separates 1, the dorsal alar plate, which forms sensory neurons, from 2, the ventral basal plate, which forms motor neurons">
+<ellipse class="sah-brain" cx="150" cy="130" rx="110" ry="110"/><ellipse class="sah-csf" cx="150" cy="130" rx="10" ry="34"/>
+<path class="sah-press" d="M40 130H134M166 130H260" stroke-dasharray="6 5"/><text class="site-label" x="150" y="60" text-anchor="middle">Alar plate</text><text class="site-label" x="150" y="210" text-anchor="middle">Basal plate</text><text class="site-label" x="268" y="124" text-anchor="start">Sulcus limitans</text>
+<g class="site-marker"><circle cx="110" cy="84" r="11"/><text x="110" y="88.5">1</text></g><g class="site-marker"><circle cx="110" cy="176" r="11"/><text x="110" y="180.5">2</text></g>
+</svg></figure>
+<ul class="cause-list">
+<li><span class="cause-number" aria-hidden="true">1</span><span class="cause-text"><span class="cause-name">Alar plate</span><span class="cause-detail">Dorsal; forms sensory neurons</span></span></li>
+<li><span class="cause-number" aria-hidden="true">2</span><span class="cause-text"><span class="cause-name">Basal plate</span><span class="cause-detail">Ventral; forms motor neurons</span></span></li>
+<li><span class="cause-number" aria-hidden="true">+</span><span class="cause-text"><span class="cause-name">Sulcus limitans</span><span class="cause-detail">Separates them, and remains in the floor of the fourth ventricle</span></span></li>
+</ul>
+</div>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Before birth</h4>
+<ul class="pair-list">
+<li><span class="pair-from">Spinal cord</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Ends at about L3 at birth and rises to L1–L2 in adults, as the spine outgrows it</span></li>
+<li><span class="pair-from">Lumbar puncture</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Below L2 in adults, to avoid the cord</span></li>
+</ul>
+</div>
+                </section>
+
+                <section class="content-section">
+                    <h3>Germ layers and the neural crest</h3>
+<div class="table-wrap"><table class="data-table compare-table"><thead><tr><th scope="col">Origin</th><th scope="col">Gives rise to</th></tr></thead><tbody><tr><th scope="row">Neuroectoderm (neural tube)</th><td><abbr class="term" tabindex="0" data-definition="Central nervous system">CNS</abbr> neurons, astrocytes, oligodendrocytes, and ependymal cells; retina and optic nerve; posterior pituitary; pineal gland</td></tr><tr><th scope="row">Neural crest</th><td><abbr class="term" tabindex="0" data-definition="Peripheral nervous system">PNS</abbr> neurons (dorsal root, cranial, and autonomic ganglia); Schwann cells; melanocytes; adrenal medulla chromaffin cells; enteric neurons; odontoblasts; parafollicular cells; the aorticopulmonary septum</td></tr><tr><th scope="row">Mesoderm</th><td>Microglia, of monocyte–macrophage origin; dura mater</td></tr><tr><th scope="row">Notochord</th><td>Nucleus pulposus</td></tr></tbody></table></div>
+<p class="note"><strong>Note:</strong> Disorders of neural crest derivatives, neurocristopathies, can affect several organ systems at once, as in Hirschsprung disease, where enteric neurons fail to migrate.</p>
+                </section>
+
+                <section class="content-section">
+                    <h3>When it fails</h3>
+<div class="subsection">
+<h4 class="sc-heading">Neural tube defects</h4>
+<div class="table-wrap"><table class="data-table compare-table"><thead><tr><th scope="col">Defect</th><th scope="col">Mechanism</th><th scope="col">Features</th><th scope="col">Clue</th></tr></thead><tbody><tr><th scope="row">Anencephaly</th><td>Anterior neuropore fails to close</td><td>No forebrain or skull vault; incompatible with life</td><td>Raised maternal <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr>; polyhydramnios</td></tr><tr><th scope="row">Spina bifida occulta</th><td>Vertebral arches fail to fuse, with neural tissue covered</td><td>Usually no symptoms</td><td>Tuft of hair or dimple over the lower spine; normal <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr></td></tr><tr><th scope="row">Meningocele</th><td>Meninges herniate through the defect</td><td>A skin-covered sac of <abbr class="term" tabindex="0" data-definition="Cerebrospinal fluid">CSF</abbr>; usually no deficit</td><td></td></tr><tr><th scope="row">Myelomeningocele</th><td>Meninges and spinal cord herniate</td><td>Exposed cord: leg weakness, bladder and bowel dysfunction, hydrocephalus</td><td>Raised <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr>; Chiari 2 malformation</td></tr></tbody></table></div>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Risk and prevention</h4>
+<ul class="pair-list">
+<li><span class="pair-from">Folate deficiency</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">The most common environmental cause; folic acid before conception and food fortification prevent most cases</span></li>
+<li><span class="pair-from">Drugs</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Valproate, about 10 times the usual risk; <a class="pair-link" href="index.html#seizures">avoided in those who could become pregnant</a></span></li>
+<li><span class="pair-from">Screening</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Raised <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr> in maternal serum and amniotic fluid in open defects</span></li>
+</ul>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Forebrain and hindbrain malformations</h4>
+<div class="table-wrap"><table class="data-table compare-table"><thead><tr><th scope="col">Defect</th><th scope="col">Mechanism</th><th scope="col">Features</th><th scope="col">Clue</th></tr></thead><tbody><tr><th scope="row">Holoprosencephaly</th><td>The forebrain fails to divide into two hemispheres</td><td>Midline face defects, from cleft lip to cyclopia; a single ventricle</td><td><abbr class="term" tabindex="0" data-definition="Sonic hedgehog, a signal that patterns the ventral neural tube and midline">SHH</abbr> mutations; trisomy 13 (Patau); maternal diabetes</td></tr><tr><th scope="row">Chiari 1 malformation</th><td>Cerebellar tonsils descend at least 5 mm below the foramen magnum</td><td>Often silent; cough-provoked headache, scoliosis</td><td>Syringomyelia</td></tr><tr><th scope="row">Chiari 2 malformation</th><td>Vermis, brainstem, and fourth ventricle descend</td><td>Hydrocephalus and brainstem signs</td><td>Almost always with myelomeningocele</td></tr><tr><th scope="row">Dandy-Walker malformation</th><td>Vermis fails to form; the fourth ventricle enlarges into a cyst</td><td>Large posterior fossa; hydrocephalus in most</td><td>The most common posterior fossa malformation</td></tr></tbody></table></div>
+</div>
+<div class="subsection">
+<h4 class="sc-heading">Syringomyelia</h4>
+<ul class="pair-list">
+<li><span class="pair-from">Syrinx in the central cord</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Compresses spinothalamic fibers crossing in the anterior white commissure → loss of pain and temperature in a cape over the shoulders and arms, with touch and vibration spared</span></li>
+<li><span class="pair-from">Causes</span><span class="pair-arrow" aria-hidden="true"></span><span class="pair-to">Chiari 1 malformation most often; trauma, tumors, and arachnoiditis</span></li>
+</ul>
+</div>
+                </section>
+
+                <p class="see-also">
+                    Related:
+                    <button type="button" class="link-button" data-goto="neurons">Neurons and Action Potentials</button>
+                    <button type="button" class="link-button" data-goto="ascending">Ascending Tracts</button>
+                    <a class="link-button" href="index.html#seizures">Seizures</a>
+                    <a class="link-button" href="index.html#herniation">Herniation Syndromes</a>
+                </p>
+                <section class="references" aria-label="References">
+                    <h3>References</h3>
+                    <ol>
+                        <li>Singh R, Munakomi S. Embryology, Neural Tube. 2023. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK542285/" target="_blank" rel="noopener">NBK542285</a></li>
+                        <li>Kuwar Chhetri P, Das JM. Neuroanatomy, Neural Tube Development and Stages. 2023. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK557414/" target="_blank" rel="noopener">NBK557414</a></li>
+                        <li>Das JM, Lui F. Neuroanatomy, Neural Crest. 2026. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK547700/" target="_blank" rel="noopener">NBK547700</a></li>
+                        <li>Karsonovich T, Munakomi S. Spina Bifida. 2025. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK559265/" target="_blank" rel="noopener">NBK559265</a></li>
+                        <li>Tafuri SM, Lui F. Embryology, Anencephaly. 2023. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK545244/" target="_blank" rel="noopener">NBK545244</a></li>
+                        <li>Ramakrishnan S, Das JM. Holoprosencephaly. 2024. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK560861/" target="_blank" rel="noopener">NBK560861</a></li>
+                        <li>Kular S, Karsonovich T. Chiari Malformation Type 1. 2025. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK554609/" target="_blank" rel="noopener">NBK554609</a></li>
+                        <li>Kuhn J, Weisbrod LJ, Emmady PD. Chiari Malformation Type 2. 2024. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK557498/" target="_blank" rel="noopener">NBK557498</a></li>
+                        <li>Karsonovich T, Das JM, Ahmad T. Dandy-Walker Malformation. 2026. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK538197/" target="_blank" rel="noopener">NBK538197</a></li>
+                        <li>Shenoy VS, Munakomi S, Sampath R. Syringomyelia. 2024. In: <em>StatPearls</em>. StatPearls Publishing. <a href="https://www.ncbi.nlm.nih.gov/books/NBK470405/" target="_blank" rel="noopener">NBK470405</a></li>
+                    </ol>
+                </section>
+                <dialog class="quick-review" aria-labelledby="neuro-embryology-review-title">
+                    <div class="quick-review-body">
+                        <p class="review-kicker">Review article</p>
+                        <h3 id="neuro-embryology-review-title">Embryology of the nervous system and its defects: induction, closure, division, and migration</h3>
+
+                        <p class="review-abstract">The nervous system arises when the notochord induces the overlying ectoderm to form the neural plate, which folds into the neural tube by the end of week 4. The tube forms the brain and spinal cord, dividing into three primary and then five secondary vesicles, while neural crest cells that leave its dorsal edges form most of the peripheral nervous system and several other tissues. Failure of closure produces anencephaly and spina bifida, failure of forebrain division produces holoprosencephaly, and malformations of the hindbrain produce the Chiari and Dandy-Walker malformations.</p>
+
+                        <aside class="review-key-points">
+                            <h4>Key points</h4>
+                            <ul>
+                                <li>The notochord induces the neural plate at the end of week 3; the notochord later becomes the nucleus pulposus.</li>
+                                <li>The anterior neuropore closes on day 25 and the posterior neuropore on day 28; failure causes anencephaly and spina bifida respectively.</li>
+                                <li>The alar plate forms sensory neurons and the basal plate motor neurons, separated by the sulcus limitans.</li>
+                                <li>Neural crest forms peripheral neurons, Schwann cells, melanocytes, adrenal chromaffin cells, and enteric neurons.</li>
+                                <li>Folic acid before conception prevents most neural tube defects; valproate raises the risk, and open defects raise <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr>.</li>
+                                <li>Chiari 2 malformation accompanies myelomeningocele, and Chiari 1 malformation is the commonest cause of syringomyelia.</li>
+                            </ul>
+                        </aside>
+
+                        <h4>Neurulation</h4>
+                        <p>At the end of the third week, the notochord induces the overlying ectoderm to thicken into the neural plate. Its edges rise as neural folds around a central neural groove, and the folds meet and fuse in the midline, beginning in the middle of the embryo and proceeding toward both ends. The resulting neural tube sinks beneath the surface ectoderm and forms the central nervous system. The anterior neuropore closes on day 25 and the posterior neuropore on day 28, often before pregnancy is recognized, which is why folic acid is recommended before conception. The notochord itself persists as the nucleus pulposus of the intervertebral discs.</p>
+
+                        <h4>Brain vesicles and plates</h4>
+                        <p>The cranial neural tube expands into three primary vesicles: the prosencephalon, mesencephalon, and rhombencephalon. The prosencephalon divides into the telencephalon, which forms the cerebral hemispheres and basal ganglia around the lateral ventricles, and the diencephalon, which forms the thalamus, hypothalamus, retina, and posterior pituitary around the third ventricle. The mesencephalon remains as the midbrain, around the cerebral aqueduct. The rhombencephalon divides into the metencephalon, forming the pons and cerebellum, and the myelencephalon, forming the medulla, both around the fourth ventricle.</p>
+                        <p>Within the wall of the tube, the sulcus limitans separates the dorsal alar plate, which forms sensory neurons, from the ventral basal plate, which forms motor neurons, and it remains visible in the floor of the fourth ventricle. The spinal cord ends at about L3 at birth and rises to L1–L2 in adults because the vertebral column outgrows it, so lumbar puncture is performed below L2.</p>
+
+                        <h4>Germ layers and the neural crest</h4>
+                        <p>Neuroectoderm of the tube forms the neurons and macroglia of the central nervous system, namely astrocytes, oligodendrocytes, and ependymal cells, together with the retina, optic nerve, posterior pituitary, and pineal gland. Neural crest cells leave the dorsal edges of the folds as they fuse and migrate widely, forming the neurons of the dorsal root, cranial, and autonomic ganglia, Schwann cells, melanocytes, adrenal chromaffin cells, enteric neurons, odontoblasts, parafollicular cells, and the aorticopulmonary septum. Microglia are of monocyte–macrophage origin and therefore mesodermal, as is the dura mater. Disorders of neural crest derivatives, the neurocristopathies, may affect several organ systems at once; in Hirschsprung disease, enteric neurons fail to migrate into the distal bowel.</p>
+
+                        <h4>When it fails</h4>
+                        <p>Failure of the anterior neuropore to close causes anencephaly, with absence of the forebrain and skull vault; it is incompatible with life, and maternal <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr> is raised, often with polyhydramnios. Failure of the posterior neuropore causes spina bifida. In spina bifida occulta, the vertebral arches fail to fuse but the neural tissue is covered, symptoms are usually absent, <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr> is normal, and a tuft of hair or dimple may overlie the lower spine. In a meningocele, a skin-covered sac of meninges and cerebrospinal fluid herniates through the defect, usually without deficit. In a myelomeningocele, the spinal cord herniates with the meninges, causing leg weakness, bladder and bowel dysfunction, and hydrocephalus, with raised <abbr class="term" tabindex="0" data-definition="Alpha-fetoprotein">AFP</abbr> and an associated Chiari 2 malformation. Folate deficiency is the commonest environmental cause of neural tube defects, and folic acid before conception and food fortification prevent most cases; valproate raises the risk about tenfold and is avoided in those who could become pregnant.</p>
+                        <p>Holoprosencephaly results when the forebrain fails to divide into two hemispheres, producing a single ventricle and midline facial defects that range from cleft lip to cyclopia; it is associated with <abbr class="term" tabindex="0" data-definition="Sonic hedgehog, a signal that patterns the ventral neural tube and midline">SHH</abbr> mutations, trisomy 13, and maternal diabetes. In the Chiari 1 malformation, the cerebellar tonsils lie at least 5 mm below the foramen magnum; it is often silent but may cause cough-provoked headache and scoliosis, and it is the commonest cause of syringomyelia. In the Chiari 2 malformation, the vermis, brainstem, and fourth ventricle descend, causing hydrocephalus and brainstem signs, almost always with a myelomeningocele. The Dandy-Walker malformation, the most common malformation of the posterior fossa, combines failure of the vermis to form with cystic enlargement of the fourth ventricle, and most patients develop hydrocephalus.</p>
+                        <p>Syringomyelia is a fluid-filled cavity in the central spinal cord. It compresses the spinothalamic fibers crossing in the anterior white commissure, causing loss of pain and temperature sensation in a cape over the shoulders and arms while touch and vibration are spared. Besides the Chiari 1 malformation, causes include trauma, tumors, and arachnoiditis.</p>
+
+                        <h4>Relationships to other topics</h4>
+                        <p><em><button type="button" class="review-link" data-goto="ascending">Ascending tracts</button>.</em> The dissociated sensory loss of syringomyelia follows from the anatomy of the spinothalamic tract, which crosses near the central canal, whereas the dorsal columns ascend uncrossed and are spared.</p>
+                        <p><em><button type="button" class="review-link" data-goto="neurons">Neurons and action potentials</button>.</em> The glial cells described there arise from three origins: astrocytes, oligodendrocytes, and ependymal cells from neuroectoderm, Schwann cells from neural crest, and microglia from the monocyte–macrophage lineage.</p>
+                        <p><em><a class="review-link" href="index.html#seizures">Seizures</a>.</em> Valproate, effective across seizure types, is the antiseizure drug most strongly linked to neural tube defects, which shapes drug choice in those who could become pregnant.</p>
+                    </div>
+                </dialog>
+
+            </article>
 
             <article class="condition-content active" id="neurons">
                 <h2>Neurons and Action Potentials</h2>
